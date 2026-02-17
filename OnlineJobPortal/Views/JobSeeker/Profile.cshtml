@@ -1,0 +1,7 @@
+@model ApplicationUser
+<h3>My Profile</h3>
+<form method="post" enctype="multipart/form-data">@Html.AntiForgeryToken()
+    <div class="mb-2"><label>Full Name</label><input name="FullName" class="form-control" value="@Model.FullName"/></div>
+    <div class="mb-2"><label>Resume (PDF)</label><input type="file" name="resume" class="form-control"/></div>
+    <button class="btn btn-primary">Update</button>
+</form>
