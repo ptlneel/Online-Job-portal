@@ -1,0 +1,5 @@
+@model IEnumerable<ApplicationUser>
+<h3>Pending Employers</h3>
+<table class="table"><tr><th>Name</th><th>Email</th><th></th></tr>
+@foreach(var e in Model){<tr><td>@e.FullName</td><td>@e.Email</td><td><form method="post" asp-action="ApproveEmployer">@Html.AntiForgeryToken()<input type="hidden" name="id" value="@e.Id"/><button class="btn btn-sm btn-success">Approve</button></form></td></tr>}
+</table>

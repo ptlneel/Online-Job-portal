@@ -1,0 +1,4 @@
+@model IEnumerable<JobCategory>
+<h3>Manage Categories</h3>
+<form method="post" asp-action="CreateCategory" class="row g-2 mb-3">@Html.AntiForgeryToken()<div class="col-auto"><input name="Name" class="form-control"/></div><div class="col-auto"><button class="btn btn-primary">Add</button></div></form>
+@foreach(var c in Model){<div class="d-flex justify-content-between border p-2 mb-1">@c.Name <form method="post" asp-action="DeleteCategory">@Html.AntiForgeryToken()<input type="hidden" name="id" value="@c.Id" /><button class="btn btn-sm btn-danger">Delete</button></form></div>}

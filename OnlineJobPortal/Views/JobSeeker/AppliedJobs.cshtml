@@ -1,0 +1,5 @@
+@model IEnumerable<JobApplication>
+<h3>Applied Jobs</h3>
+<table class="table"><tr><th>Job</th><th>Employer</th><th>Status</th><th>Applied</th></tr>
+@foreach(var a in Model){<tr><td>@a.Job?.Title</td><td>@a.Job?.Employer?.CompanyName</td><td>@a.Status</td><td>@a.ApplyDate.ToShortDateString()</td></tr>}
+</table>
