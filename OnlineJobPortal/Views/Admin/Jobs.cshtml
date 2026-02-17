@@ -1,0 +1,3 @@
+@model IEnumerable<Job>
+<h3>All Jobs</h3>
+@foreach(var j in Model){<div class="border p-2 mb-2">@j.Title <form method="post" asp-action="DeleteJob" class="d-inline">@Html.AntiForgeryToken()<input type="hidden" name="id" value="@j.Id"/><button class="btn btn-sm btn-danger">Delete</button></form></div>}

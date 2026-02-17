@@ -1,0 +1,28 @@
+@model (JobSearchViewModel Search, IEnumerable<Job> Jobs)
+@{
+    ViewData["Title"] = "Find Jobs";
+}
+<div class="p-5 mb-4 bg-light rounded-3">
+    <h1 class="display-6 fw-bold">Find your next opportunity</h1>
+    <form method="get" class="row g-2">
+        <div class="col-md-3"><input name="Query" class="form-control" placeholder="Job title or keyword" value="@Model.Search.Query" /></div>
+        <div class="col-md-2"><input name="Location" class="form-control" placeholder="Location" value="@Model.Search.Location" /></div>
+        <div class="col-md-2"><input name="MinSalary" class="form-control" placeholder="Min Salary" value="@Model.Search.MinSalary" /></div>
+        <div class="col-md-2"><select name="Sort" class="form-select"><option value="latest">Latest</option><option value="salary_desc">Salary High-Low</option></select></div>
+        <div class="col-md-2"><button class="btn btn-primary w-100">Search</button></div>
+    </form>
+</div>
+<div class="row g-3">
+@foreach (var job in Model.Jobs)
+{
+    <div class="col-md-4">
+        <div class="card h-100 shadow-sm">
+            <div class="card-body">
+                <h5>@job.Title</h5>
+                <p class="small text-muted">@job.Location · ₹@job.Salary</p>
+                <a asp-controller="Jobs" asp-action="Details" asp-route-id="@job.Id" class="btn btn-outline-primary btn-sm">View Details</a>
+            </div>
+        </div>
+    </div>
+}
+</div>

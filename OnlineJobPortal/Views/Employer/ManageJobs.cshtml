@@ -1,0 +1,4 @@
+@model IEnumerable<Job>
+<h3>Manage Jobs</h3>
+<a asp-action="CreateJob" class="btn btn-success mb-2">Post New Job</a>
+@foreach(var j in Model){<div class="border p-2 mb-2">@j.Title <a asp-controller="Jobs" asp-action="Edit" asp-route-id="@j.Id" class="btn btn-sm btn-primary">Edit</a> <form method="post" asp-controller="Jobs" asp-action="Delete" class="d-inline">@Html.AntiForgeryToken()<input type="hidden" name="id" value="@j.Id"/><button class="btn btn-sm btn-danger">Delete</button></form></div>}
