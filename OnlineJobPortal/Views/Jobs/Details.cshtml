@@ -1,0 +1,24 @@
+@model Job
+<h2>@Model.Title</h2>
+<p>@Model.Description</p>
+<p><b>Location:</b> @Model.Location | <b>Salary:</b> ₹@Model.Salary</p>
+@if (User.IsInRole("JobSeeker"))
+{
+    <form id="applyForm" asp-action="Apply" method="post">
+        @Html.AntiForgeryToken()
+        <input type="hidden" name="jobId" value="@Model.Id" />
+        <button class="btn btn-success" type="submit">Apply Now</button>
+    </form>
+    <div id="applyResult" class="mt-2"></div>
+}
+@section Scripts {
+<script>
+document.getElementById('applyForm')?.addEventListener('submit', async e => {
+ e.preventDefault();
+ const form = e.target;
+ const res = await fetch(form.action, { method:'POST', body:new FormData(form)});
+ const data = await res.json();
+ document.getElementById('applyResult').innerHTML = `<div class="alert ${data.success?'alert-success':'alert-danger'}">${data.message}</div>`;
+});
+</script>
+}

@@ -1,0 +1,5 @@
+@model IEnumerable<JobApplication>
+<h3>Applicants</h3>
+<table class="table"><tr><th>Job</th><th>User</th><th>Status</th><th>Resume</th><th></th></tr>
+@foreach(var a in Model){<tr><td>@a.Job?.Title</td><td>@a.User?.FullName</td><td>@a.Status</td><td>@if(a.User?.ResumePath!=null){<a href="@a.User.ResumePath" download>Download</a>}</td><td><form method="post" asp-action="ChangeStatus">@Html.AntiForgeryToken()<input type="hidden" name="id" value="@a.Id"/><select name="status"><option>Shortlisted</option><option>Rejected</option><option>Interview</option></select><button class="btn btn-sm btn-primary">Update</button></form></td></tr>}
+</table>

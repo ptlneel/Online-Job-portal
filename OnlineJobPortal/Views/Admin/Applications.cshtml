@@ -1,0 +1,3 @@
+@model IEnumerable<JobApplication>
+<h3>All Applications</h3>
+<table class="table"><tr><th>JobId</th><th>UserId</th><th>Status</th></tr>@foreach(var a in Model){<tr><td>@a.JobId</td><td>@a.UserId</td><td>@a.Status</td></tr>}</table>

@@ -1,0 +1,14 @@
+@model dynamic
+<h2>Admin Dashboard</h2>
+<div class="row g-3">
+  <div class="col-md-2"><div class="card p-3">Users: @Model.TotalUsers</div></div>
+  <div class="col-md-2"><div class="card p-3">Employers: @Model.TotalEmployers</div></div>
+  <div class="col-md-2"><div class="card p-3">Job Seekers: @Model.TotalJobSeekers</div></div>
+  <div class="col-md-2"><div class="card p-3">Jobs: @Model.TotalJobs</div></div>
+  <div class="col-md-2"><div class="card p-3">Applications: @Model.TotalApplications</div></div>
+</div>
+<canvas id="adminChart" class="mt-3"></canvas>
+@section Scripts {
+<script>
+new Chart(document.getElementById('adminChart'), {type:'bar', data:{labels:['Users','Employers','Seekers','Jobs','Apps'], datasets:[{data:[@Model.TotalUsers,@Model.TotalEmployers,@Model.TotalJobSeekers,@Model.TotalJobs,@Model.TotalApplications]}]}});
+</script>}
